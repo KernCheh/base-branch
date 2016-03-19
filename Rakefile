@@ -8,5 +8,3 @@ Rake::TestTask.new(:test) do |t|
 end
 
 task :default => :spec
-
-import './lib/tasks/build_database.rake'

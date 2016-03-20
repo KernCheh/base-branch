@@ -5,7 +5,6 @@ class InstallGeneratorTest < Rails::Generators::TestCase
   destination File.expand_path('../../tmp', __FILE__)
 
   setup :prepare_destination
-  teardown :cleanup_destination_root
 
   test 'properly creates base_branch.yml' do
     run_generator(['--default_db=default'])

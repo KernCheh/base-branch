@@ -1,5 +1,7 @@
 module BaseBranch
   class Railtie < Rails::Railtie
+    railtie_name :base_branch
+
     initializer 'Base Branch initializer' do
       ActiveSupport.on_load(:action_controller) do
         include BaseBranch
@@ -7,7 +9,7 @@ module BaseBranch
     end
 
     generators do
-      require 'generators/initializer_generator'
+      require_relative '../generators/base_branch/install_generator'
     end
   end
 end

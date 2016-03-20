@@ -7,7 +7,7 @@ A simple gem to which automatically manages unique databases across code reposit
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'base-branch'
+gem 'base-branch', group: :development
 ```
 
 And then execute:
@@ -23,6 +23,10 @@ After installation, run:
     $ rails g base_branch:install
     
 to complete the configuration process.
+
+Also, change the database configuration under development in `database.yml` to:
+
+    database: <%= BaseBranch::Database::ActiveDatabase.database_name || 'default_db' %>
 
 ## Usage
 
@@ -42,7 +46,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/base-branch. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/KernCheh/base-branch. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 
 ## License

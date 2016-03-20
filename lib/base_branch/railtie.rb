@@ -5,5 +5,9 @@ module BaseBranch
         include BaseBranch
       end
     end
+
+    generators do
+      require 'generators/initializer_generator'
+    end
   end
 end

@@ -5,5 +5,9 @@ class GitBranchTest < Minitest::Test
     BaseBranch::GitBranch.stub :branches, ['  branch2', '* master', '  remotes/origin/master'] do
       assert_equal 'master', BaseBranch::GitBranch.current_branch
     end
+
+    BaseBranch::GitBranch.stub :branches, ['* branch2', '  master', '  remotes/origin/master'] do
+      assert_equal 'branch2', BaseBranch::GitBranch.current_branch
+    end
   end
 end

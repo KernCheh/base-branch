@@ -18,7 +18,7 @@ class ActiveDatabaseTest < Minitest::Test
   end
 
   def test_branch_specific_db_non_master
-    stub(subject).db_present?.with_any_args { true }
+    stub(subject).branch_db_present?.with_any_args { true }
     stub(subject).default_db_name { 'my-project' }
     stub(BaseBranch::GitBranch).current_branch { 'branch1' }
 
@@ -26,7 +26,7 @@ class ActiveDatabaseTest < Minitest::Test
   end
 
   def test_branch_specific_db_master
-    stub(subject).db_present?.with_any_args { true }
+    stub(subject).branch_db_present?.with_any_args { true }
     stub(subject).default_db_name { 'my-project' }
     stub(BaseBranch::GitBranch).current_branch { 'master' }
 
@@ -34,7 +34,7 @@ class ActiveDatabaseTest < Minitest::Test
   end
 
   def test_branch_specific_db_branch_db_not_present
-    stub(subject).db_present?.with_any_args { false }
+    stub(subject).branch_db_present?.with_any_args { false }
     stub(subject).default_db_name { 'my-project' }
     stub(BaseBranch::GitBranch).current_branch { 'branch1' }
 

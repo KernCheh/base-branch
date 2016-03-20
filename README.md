@@ -1,5 +1,6 @@
 # Base::Branch
 
+A simple gem to which automatically manages unique databases across code repository branches.
 
 ## Installation
 
@@ -16,10 +17,22 @@ And then execute:
 Or install it yourself as:
 
     $ gem install base-branch
+    
+After installation, run:
+
+    $ rails g base_branch:install
+    
+to complete the configuration process.
 
 ## Usage
 
-TODO: Write usage instructions here
+### When creating branches:
+
+Run:
+
+    $ rake base_branch:create_branch
+    
+to create a branch specific database. If branch specific database is not present, the default database will be used when the app loads.
 
 ## Development
 

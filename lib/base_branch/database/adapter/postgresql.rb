@@ -3,7 +3,7 @@ module BaseBranch::Database::Adapter
     class << self
       def clone_db(db_name, from_db, db_user)
         result = orm_execute <<-SQL
-          CREATE DATABASE "#{db_name}" WITH TEMPLATE "#{from_db}" OWNER "#{db_user}";
+          CREATE DATABASE "#{db_name}" WITH TEMPLATE "#{from_db}"#{db_user ? 'OWNER "#{db_user}"' : ''};
         SQL
 
         orm_successfully_executed? result

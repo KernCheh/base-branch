@@ -20,6 +20,13 @@ module BaseBranch
 
 default_db: '#{db_name}'
       YAML
+
+      append_to_file '.gitignore', <<-FILE
+
+# Do not check in base-branch files into SCM
+config/base_branch.yml
+.base_branch.yml
+      FILE
     end
   end
 end

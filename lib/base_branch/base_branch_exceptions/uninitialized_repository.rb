@@ -1,4 +1,4 @@
-module BaseBranch::Exceptions
+module BaseBranch::BaseBranchExceptions
   class UninitializedRepository < StandardError
   end
 end

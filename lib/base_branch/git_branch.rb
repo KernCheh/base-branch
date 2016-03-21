@@ -2,7 +2,7 @@ class BaseBranch::GitBranch
   class << self
     def current_branch
       raise(
-        BaseBranch::Exceptions::UninitializedRepository,
+        BaseBranch::BaseBranchExceptions::UninitializedRepository,
         'Please initialize a git repository and have at least one branch.'
       ) if (branchez = branches).empty?
 

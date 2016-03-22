@@ -2,9 +2,16 @@ module BaseBranch::Database::Adapter
   class Postgresql < Base
     class << self
       def clone_db(db_name, from_db, db_user)
-        result = orm_execute <<-SQL
-          CREATE DATABASE "#{db_name}" WITH TEMPLATE "#{from_db}"#{db_user ? 'OWNER "#{db_user}"' : ''};
-        SQL
+        result =  if db_user
+                    orm_execute <<-SQL
+                      CREATE DATABASE "#{db_name}" WITH TEMPLATE "#{from_db}" OWNER #{db_user};
+                    SQL
+                  else
+                    orm_execute <<-SQL
+                      CREATE DATABASE "#{db_name}" WITH TEMPLATE "#{from_db}";
+                    SQL
+                  end
+
 
         orm_successfully_executed? result
       end

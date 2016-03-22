@@ -1,6 +1,17 @@
-# Base::Branch
+# BaseBranch
 
-A simple gem to which automatically manages unique databases across code repository branches.
+A simple gem to which automatically manages unique databases across code repository branches for Rails projects.
+
+## Description
+
+This gem is designed for people who actively work across multiple branches for Rails projects. Quite often, each of these branches come with a set of database migrations that are not finalized.
+Base Branch attempts to solve this issue by creating unique databases namespaced by the feature branch names and cloning the data in from the default database.
+ 
+Using BaseBranch, it is assured that
+
+  1. Feature Branches have a clean environment to work from.
+  2. The default database tied to master branch will not suffer from migration artifacts from unmerged feature branches.
+  3. Developers can drop and recreate databases used for feature branches with a peace of mind :) 
 
 ## Installation
 
@@ -24,10 +35,6 @@ After installation, run:
     
 to complete the configuration process.
 
-Also, change the database configuration under development in `database.yml` to:
-
-    database: <%= BaseBranch::Database::ActiveDatabase.database_name || 'default_db' %>
-
 ## Usage
 
 ### When creating branches:
@@ -37,6 +44,12 @@ Run:
     $ rake base_branch:create_branch
     
 to create a branch specific database. If branch specific database is not present, the default database will be used when the app loads.
+
+You may have to run a `spring stop` afterwards if you are using the `spring` gem in order to load the correct database.
+
+## To-dos
+
+  1. Create a task to check against merged feature branches and clean up the corresponding databases
 
 ## Development
 

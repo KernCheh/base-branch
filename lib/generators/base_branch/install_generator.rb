@@ -21,6 +21,19 @@ module BaseBranch
 default_db: '#{db_name}'
       YAML
 
+      database_yml = File.join(Rails.root, 'config', 'database.yml')
+      database_config = YAML::load_file(database_yml)
+      dev_database_name = database_config['development']['database']
+
+      database_yml_lines = IO.readlines(database_yml)
+      database_yml_lines = database_yml_lines
+                             .map{|s| s.gsub(dev_database_name, "<%= defined?(BaseBranch) ? BaseBranch::Database::ActiveDatabase.database_name : '#{dev_database_name}' %>")}
+
+      File.open(database_yml, 'w') do |file|
+        file.puts database_yml_lines
+        file.close
+      end
+
       append_to_file '.gitignore', <<-FILE
 
 # Do not check in base-branch files into SCM

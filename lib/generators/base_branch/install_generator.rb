@@ -37,7 +37,6 @@ default_db: '#{db_name}'
       append_to_file '.gitignore', <<-FILE
 
 # Do not check in base-branch files into SCM
-config/base_branch.yml
 .base_branch.yml
       FILE
     end
